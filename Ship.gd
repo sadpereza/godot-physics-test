@@ -16,22 +16,22 @@ func _ready():
 func _physics_process(_delta):
 	if Input.is_action_pressed("ui_left"):
 		linear_velocity += Vector2(\
-		cos((rotation_degrees - 90) * PI / 180) * acceleration, \
+		cos((rotation_degrees - 90) * PI / 180) * acceleration,
 		sin((rotation_degrees - 90) * PI / 180) * acceleration)
 	if Input.is_action_pressed("ui_right"):
 		linear_velocity += Vector2(\
-		cos((rotation_degrees + 90) * PI / 180) * acceleration, \
+		cos((rotation_degrees + 90) * PI / 180) * acceleration,
 		sin((rotation_degrees + 90) * PI / 180) * acceleration)
 	if Input.is_action_pressed("ui_up"):
 		linear_velocity += Vector2(\
-		cos(rotation_degrees * PI / 180) * acceleration * 4, \
+		cos(rotation_degrees * PI / 180) * acceleration * 4,
 		sin(rotation_degrees * PI / 180) * acceleration * 4)
 	if Input.is_action_pressed("ui_down"):
 		linear_velocity -= Vector2(\
-		cos(rotation_degrees * PI / 180) * acceleration, \
+		cos(rotation_degrees * PI / 180) * acceleration,
 		sin(rotation_degrees * PI / 180) * acceleration)
 	if Input.is_action_pressed("ui_select"):
-		if linear_velocity.length() > acceleration:
+		if linear_velocity.length() > acceleration * 2:
 			linear_velocity.x -= linear_velocity.normalized().x * acceleration * 4
 			linear_velocity.y -= linear_velocity.normalized().y * acceleration * 4
 			# horrible, horrible, code
