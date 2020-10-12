@@ -4,7 +4,7 @@
 [ext_resource path="res://art/particle.png" type="Texture" id=2]
 
 [node name="Trail Particle" type="Sprite"]
-scale = Vector2( 0.44703, 0.44703 )
+scale = Vector2( 0.159225, 0.157304 )
 texture = ExtResource( 2 )
 script = ExtResource( 1 )
 

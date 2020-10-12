@@ -1,17 +1,13 @@
 extends RigidBody2D
 
 var velocity
-export var acceleration = 4
+export var acceleration = 1.0
 export var rotation_speed = 0.25
 
 var trail_particle = preload("res://Trail Particle.tscn")
 
 onready var zoom_factor = 16.0/15.0 # amount $Camera2D.zoom is multiplied by to zoom in
-signal zoom_out(factor)
-signal zoom_in(factor)
-
-func _ready():
-	print(zoom_factor)
+signal zoom_change(factor)
 
 func _physics_process(_delta):
 	if Input.is_action_pressed("ui_left"):
@@ -52,16 +48,15 @@ func _physics_process(_delta):
 		angular_velocity += rotation_speed
 	
 	if Input.is_action_pressed("ui_cancel"):
+		# warning-ignore:return_value_discarded
 		get_tree().reload_current_scene()
 		
 	if Input.is_action_just_released("zoom_in"):
 		$Camera2D.zoom = $Camera2D.zoom * zoom_factor
-		print("in")
-		emit_signal("zoom_in", zoom_factor)
+		emit_signal("zoom_change", zoom_factor)
 	if Input.is_action_just_released("zoom_out"):
-		$Camera2D.zoom = $Camera2D.zoom * 1/zoom_factor
-		
-		emit_signal("zoom_out", zoom_factor)
+		$Camera2D.zoom = $Camera2D.zoom * 1.0/zoom_factor
+		emit_signal("zoom_change", 1.0/zoom_factor)
 
 
 func _on_Trail_Particle_Timer_timeout():
