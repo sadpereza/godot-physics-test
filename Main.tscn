@@ -1,9 +1,10 @@
-[gd_scene load_steps=5 format=2]
+[gd_scene load_steps=6 format=2]
 
 [ext_resource path="res://Ship.tscn" type="PackedScene" id=1]
 [ext_resource path="res://Main.gd" type="Script" id=2]
+[ext_resource path="res://CelestialBodies/David.tscn" type="PackedScene" id=3]
 [ext_resource path="res://art/best-zoom-backgrounds-free-star-wars-starfield-1587416939.jpg" type="Texture" id=4]
-[ext_resource path="res://Planet.tscn" type="PackedScene" id=5]
+[ext_resource path="res://CelestialBodies/RoundPlanet.tscn" type="PackedScene" id=5]
 
 [node name="Main" type="Node"]
 script = ExtResource( 2 )
@@ -26,42 +27,6 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="Planet" parent="." instance=ExtResource( 5 )]
-position = Vector2( 1794.66, 700.625 )
-
-[node name="Button" type="Button" parent="Planet"]
-visible = false
-margin_left = 209.868
-margin_top = 141.727
-margin_right = 324.868
-margin_bottom = 180.727
-shortcut_in_tooltip = false
-text = "falloff * 2"
-__meta__ = {
-"_edit_use_anchors_": false
-}
-
-[node name="Button2" type="Button" parent="Planet"]
-visible = false
-margin_left = -313.995
-margin_top = 141.727
-margin_right = -169.995
-margin_bottom = 180.727
-shortcut_in_tooltip = false
-text = "falloff / 2"
-__meta__ = {
-"_edit_use_anchors_": false
-}
-
-[node name="Label" type="Label" parent="Planet"]
-margin_left = -51.182
-margin_top = 141.727
-margin_right = 83.818
-margin_bottom = 180.727
-__meta__ = {
-"_edit_use_anchors_": false
-}
-
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
 
 [node name="Label" type="Label" parent="CanvasLayer"]
@@ -72,7 +37,11 @@ y: something"
 __meta__ = {
 "_edit_use_anchors_": false
 }
-[connection signal="zoom_in" from="Ship" to="." method="_on_Ship_zoom_in"]
-[connection signal="zoom_out" from="Ship" to="." method="_on_Ship_zoom_out"]
-[connection signal="pressed" from="Planet/Button" to="Planet" method="_on_Button_pressed"]
-[connection signal="pressed" from="Planet/Button2" to="Planet" method="_on_Button2_pressed"]
+
+[node name="David" parent="." instance=ExtResource( 3 )]
+position = Vector2( 10938.3, 5845.99 )
+
+[node name="RoundPlanet" parent="." instance=ExtResource( 5 )]
+position = Vector2( 2771.59, 1399.25 )
+sleeping = true
+[connection signal="zoom_change" from="Ship" to="." method="_on_Ship_zoom_change"]
