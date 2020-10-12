@@ -13,11 +13,3 @@ func _on_Ship_zoom_change(factor):
 	bg.get_node("TextureRect").rect_size *= factor
 	print("Scaled by " + str(factor))
 	pass
-
-"""
-func _on_Ship_zoom_out(factor):
-	bg.get_node("TextureRect").rect_size *= 1/factor
-	#bg.get_node("Sprite").scale *= 1/factor
-	#bg.motion_mirroring *= factor
-	pass
-"""
