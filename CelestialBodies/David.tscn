@@ -1,0 +1,24 @@
+[gd_scene load_steps=4 format=2]
+
+[ext_resource path="res://CelestialBodies/OtherPlanet.tscn" type="PackedScene" id=1]
+[ext_resource path="res://art/hot.png" type="Texture" id=2]
+[ext_resource path="res://art/radialgradientbutyellow.png" type="Texture" id=3]
+
+[node name="David" instance=ExtResource( 1 )]
+mass = 500.0
+
+[node name="SphereOfInfluence" parent="." index="0"]
+scale = Vector2( 13, 13 )
+gravity_distance_scale = 0.002
+gravity = 1024.0
+
+[node name="Sprite" parent="SphereOfInfluence/CollisionShape2D" index="0"]
+texture = ExtResource( 3 )
+
+[node name="Surface" parent="." index="1"]
+scale = Vector2( 12, 12 )
+polygon = PoolVector2Array( -49.75, 46.75, -40.5, 56.75, -29.5, 64.75, -13.25, 70.75, -2.5, 71.5, -1, 69.5, -3.75, 68.25, -3.5, 65.5, -0.0787201, 65.1309, 11, 53.5, 24.5, 37.75, 31, 28, 33.25, 13.75, 37.75, 8.5, 41.9874, -8.28636, 40, -23.75, 24.9229, -41.2249, 13.0173, -47.1777, -1.4677, -48.5667, -12.5795, -46.7808, -28, -34.75, -34.75, -10.25, -47.5, -14.75, -52.2645, -8.88164, -52.5, -0.75, -50.2803, 14.3341, -46.5102, 16.3184, -43.25, 14.5, -42.3433, 17.5089, -42.3433, 27.0333 )
+
+[node name="Sprite" parent="Surface" index="0"]
+scale = Vector2( 0.224344, 0.224182 )
+texture = ExtResource( 2 )
