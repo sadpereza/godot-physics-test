@@ -6,6 +6,13 @@ export var rotation_speed = 0.25
 
 var trail_particle = preload("res://Trail Particle.tscn")
 
+onready var zoom_factor = 16.0/15.0 # amount $Camera2D.zoom is multiplied by to zoom in
+signal zoom_out(factor)
+signal zoom_in(factor)
+
+func _ready():
+	print(zoom_factor)
+
 func _physics_process(_delta):
 	if Input.is_action_pressed("ui_left"):
 		linear_velocity += Vector2(\
@@ -47,13 +54,14 @@ func _physics_process(_delta):
 	if Input.is_action_pressed("ui_cancel"):
 		get_tree().reload_current_scene()
 		
-	if Input.is_action_just_pressed("zoom_in"):
-		$Camera2D.zoom *= 16/15
+	if Input.is_action_just_released("zoom_in"):
+		$Camera2D.zoom = $Camera2D.zoom * zoom_factor
 		print("in")
-	if Input.is_action_just_pressed("zoom_out"):
-		$Camera2D.zoom *= 15/16
-		print("out")
-	
+		emit_signal("zoom_in", zoom_factor)
+	if Input.is_action_just_released("zoom_out"):
+		$Camera2D.zoom = $Camera2D.zoom * 1/zoom_factor
+		
+		emit_signal("zoom_out", zoom_factor)
 
 
 func _on_Trail_Particle_Timer_timeout():

@@ -14,13 +14,18 @@ position = Vector2( 959.229, 539.243 )
 [node name="ParallaxBackground" type="ParallaxBackground" parent="."]
 
 [node name="ParallaxLayer" type="ParallaxLayer" parent="ParallaxBackground"]
-motion_scale = Vector2( 0.1, 0.1 )
+position = Vector2( 10, 0 )
+motion_scale = Vector2( 0.01, 0.01 )
 motion_mirroring = Vector2( 1920, 1080 )
 
-[node name="Sprite" type="Sprite" parent="ParallaxBackground/ParallaxLayer"]
-scale = Vector2( 4, 4 )
+[node name="TextureRect" type="TextureRect" parent="ParallaxBackground/ParallaxLayer"]
+margin_right = 1920.0
+margin_bottom = 1080.0
 texture = ExtResource( 4 )
-centered = false
+stretch_mode = 2
+__meta__ = {
+"_edit_use_anchors_": false
+}
 
 [node name="Planet" parent="." instance=ExtResource( 5 )]
 position = Vector2( 1794.66, 700.625 )
@@ -68,5 +73,7 @@ y: something"
 __meta__ = {
 "_edit_use_anchors_": false
 }
+[connection signal="zoom_in" from="Ship" to="." method="_on_Ship_zoom_in"]
+[connection signal="zoom_out" from="Ship" to="." method="_on_Ship_zoom_out"]
 [connection signal="pressed" from="Planet/Button" to="Planet" method="_on_Button_pressed"]
 [connection signal="pressed" from="Planet/Button2" to="Planet" method="_on_Button2_pressed"]
