@@ -16,11 +16,12 @@ position = Vector2( 959.229, 539.243 )
 
 [node name="ParallaxLayer" type="ParallaxLayer" parent="ParallaxBackground"]
 motion_scale = Vector2( 0.01, 0.01 )
-motion_mirroring = Vector2( 1920, 1080 )
+motion_mirroring = Vector2( 480, 270 )
 
 [node name="TextureRect" type="TextureRect" parent="ParallaxBackground/ParallaxLayer"]
 margin_right = 1920.0
 margin_bottom = 1080.0
+rect_scale = Vector2( 0.25, 0.25 )
 texture = ExtResource( 4 )
 stretch_mode = 2
 __meta__ = {
